@@ -47,8 +47,9 @@ class MarketTest < Minitest::Test
     @market.add_vendor(@vendor_1)
     @market.add_vendor(@vendor_2)
     @market.add_vendor(@vendor_3)
-    
+
     assert_equal ["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"], @market.vendor_names
+    assert_equal [@vendor_1, @vendor_3], @market.vendors_that_sell("Peaches")
   end
 
 end
