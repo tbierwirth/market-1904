@@ -43,4 +43,11 @@ class Market
     items
   end
 
+  def sell(item, quanity)
+    total_inventory.each do |inventory|
+      return false if item != inventory[0]
+      return false if quanity > inventory[1]
+    end
+  end
+
 end
