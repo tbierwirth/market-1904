@@ -43,10 +43,28 @@ class Market
     items
   end
 
+  # def sell(item, quanity)
+  #   total_inventory.each do |inventory|
+  #     if item != inventory[0] || quanity > inventory[1]
+  #       binding.pry
+  #       return false
+  #     else
+  #       total_inventory[item[0]] -= quanity
+  #       return true
+  #     end
+  #   end
+  # end
+
   def sell(item, quanity)
-    total_inventory.each do |inventory|
-      return false if item != inventory[0]
-      return false if quanity > inventory[1]
+    if total_inventory.keys.include?(item)
+      if total_inventory[item] < quanity
+        return false
+      else
+        vendors_that_sell(item).each do |vendor|
+          vendor.inventory[item] -= quanity
+        end
+      end
+    else false
     end
   end
 
