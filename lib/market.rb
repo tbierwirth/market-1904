@@ -56,12 +56,17 @@ class Market
   # end
 
   def sell(item, quanity)
+    left_over = 0
     if total_inventory.keys.include?(item)
       if total_inventory[item] < quanity
         return false
       else
         vendors_that_sell(item).each do |vendor|
           vendor.inventory[item] -= quanity
+          if vendor.inventory[item] < 0
+            left_over = vendor.inventory[item]
+            binding.pry
+          end
         end
       end
     else false
